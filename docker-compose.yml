@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/serverless
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    command: node src/index.js     # explicitly run API
+    volumes:
+      - .:/usr/src/app             # optional, for live dev
+
+  worker:
+    build: .
+    depends_on:
+      - redis
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/serverless
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    command: node src/worker.js    # run worker script
+    volumes:
+      - .:/usr/src/app             # optional, for live dev
+
+  redis:
+    image: redis:6
+    ports:
+      - "6379:6379"
+
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
