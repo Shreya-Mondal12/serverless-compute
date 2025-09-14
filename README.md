@@ -151,7 +151,7 @@ GET http://localhost:3000/status/abc123
 
 ### Deliverables
 
-1. Serverless Compute Prototype API
+**1.** Serverless Compute Prototype API
   * Exposed via Express.js running in a container (app service).
   * Provides endpoints:
     * `/execute` → submit job to local queue
@@ -160,7 +160,7 @@ GET http://localhost:3000/status/abc123
     * `/mongo and /redis` → monitoring endpoints for DB/Cache connectivity
   * Developers only need to send function code + input, and the system executes it transparently.
 ------------------------------------------------------------------------------
-2. Job Queue with Auto-Scaling via Workers
+**2.** Job Queue with Auto-Scaling via Workers
   * Implemented using **BullMQ + Redis**.
   * The `worker` service automatically consumes jobs from the queue and executes user-provided code.
   * Designed so you can run multiple `worker` containers → simulating **infinite scaling**.
@@ -168,7 +168,7 @@ GET http://localhost:3000/status/abc123
     * Function sandboxing using `new Function`
     * Timeout protection (5s default) to avoid infinite loops.
 ------------------------------------------------------------------------------
-3. Fault Tolerance with Retries & Logging
+**3.** Fault Tolerance with Retries & Logging
   * Each job automatically retries on failure (configurable in BullMQ).
   * Worker logs:
     * ✅ Job started, data, completed, result
@@ -176,7 +176,7 @@ GET http://localhost:3000/status/abc123
     * ⏳ Timeout handling
   * Ensures system remains reliable even if some executions fail.
 ------------------------------------------------------------------------------
-4. Monitoring Endpoints for System Health
+**4.** Monitoring Endpoints for System Health
   * `/mongo`: Confirms MongoDB connectivity and lists collections.
   * `/redis`: Pings Redis to confirm cache availability.
   * `/status/:id`: Reports job state (`waiting`, `active`, `completed`, `failed`) and result.
