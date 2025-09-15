@@ -191,7 +191,7 @@ Together, these deliverables show that your prototype satisfies:
 <br/>
 
 ### Stretch Goals Implemented
-* **Developer Experience Enhancement:** Added job status and execution monitoring, giving developers feedback on their function runs.
+*  Scalable distributed job execution with dynamic worker scaling elasticity demonstrated using Docker scaling
 
 
 
