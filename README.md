@@ -115,12 +115,12 @@ This command will build the Docker images and start the following containerized 
 **Submit Function**
 ```
 POST http://localhost:3000/submit
-Content-Type: application/json
+Content-Type: application/json //Add in Header
 
 {
   "code": "return input * 2;",
   "input": 21
-}
+} // Add in Body as raw JSON
 ```
   
 **Response**
