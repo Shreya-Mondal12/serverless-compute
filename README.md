@@ -171,9 +171,9 @@ GET http://localhost:3000/status/abc123
 **3.** Fault Tolerance with Retries & Logging
   * Each job automatically retries on failure (configurable in BullMQ).
   * Worker logs:
-    * ✅ Job started, data, completed, result
-    * ❌ Failures with error details
-    * ⏳ Timeout handling
+    *  Job started, data, completed, result
+    *  Failures with error details
+    *  Timeout handling
   * Ensures system remains reliable even if some executions fail.
 ------------------------------------------------------------------------------
 **4.** Monitoring Endpoints for System Health

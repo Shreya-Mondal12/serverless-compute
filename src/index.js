@@ -15,7 +15,7 @@ async function getMongo() {
   if (!mongoClient) {
     mongoClient = new MongoClient(mongoUrl);
     await mongoClient.connect();
-    console.log("✅ Connected to Mongo");
+    console.log(" Connected to Mongo");
   }
   return mongoClient.db("testdb");
 }
@@ -85,7 +85,7 @@ app.get("/status/:id", async (req, res) => {
 
     res.json(response);
   } catch (err) {
-    console.error("❌ Error fetching job status:", err.message);
+    console.error(" Error fetching job status:", err.message);
     res.status(500).json({ error: err.message });
   }
 });
@@ -96,7 +96,7 @@ app.get("/mongo", async (req, res) => {
   try {
     const db = await getMongo();
     const collections = await db.listCollections().toArray();
-    res.json({ status: "MongoDB Connected ✅", collections });
+    res.json({ status: "MongoDB Connected ", collections });
   } catch (err) {
     res.status(500).json({ error: "MongoDB not reachable", details: err.message });
   }
@@ -106,7 +106,7 @@ app.get("/mongo", async (req, res) => {
 app.get("/redis", async (req, res) => {
   try {
     const pong = await connection.ping();
-    res.json({ status: "Redis Connected ✅", response: pong });
+    res.json({ status: "Redis Connected ", response: pong });
   } catch (err) {
     res.status(500).json({ error: "Redis not reachable", details: err.message });
   }
@@ -114,7 +114,7 @@ app.get("/redis", async (req, res) => {
 
 // Health check
 app.get("/", (req, res) => {
-  res.send("Serverless Compute Prototype Running 🚀");
+  res.send("Serverless Compute Prototype Running ");
 });
 
 // ---- Job Progress ----
@@ -128,7 +128,7 @@ app.get("/job/:id/progress", async (req, res) => {
     const progress = job.progress || 0;
     res.json({ jobId: job.id, progress });
   } catch (err) {
-    console.error("❌ Error fetching progress:", err.message);
+    console.error(" Error fetching progress:", err.message);
     res.status(500).json({ error: err.message });
   }
 });
@@ -140,14 +140,14 @@ app.get("/jobs/history", async (req, res) => {
     const jobs = await db.collection("jobs").find().sort({ createdAt: -1 }).limit(20).toArray();
     res.json(jobs);
   } catch (err) {
-    console.error("❌ Error fetching history:", err.message);
+    console.error(" Error fetching history:", err.message);
     res.status(500).json({ error: err.message });
   }
 });
 
 // ---- Start server ----
 app.listen(3000, async () => {
-  console.log("🌐 API running on http://localhost:3000");
+  console.log(" API running on http://localhost:3000");
   await getMongo();
-  console.log("📡 Ready to receive jobs"); //
+  console.log(" Ready to receive jobs"); //
 });

@@ -17,7 +17,7 @@ const worker = new Worker(
   "compute-tasks",
   async (job) => {
     console.log(
-      `[${new Date().toISOString()}] 🚀 Starting job ${job.id} with data:`,
+      `[${new Date().toISOString()}]  Starting job ${job.id} with data:`,
       job.data
     );
 
@@ -33,7 +33,7 @@ const worker = new Worker(
       let result = fn(job.data.input);
 
       if (result === undefined || Number.isNaN(result)) {
-        throw new Error("❌ Computation failed: invalid or undefined result");
+        throw new Error("Computation failed: invalid or undefined result");
       }
       if (typeof result === "bigint") {
         result = result.toString();
@@ -62,20 +62,20 @@ const worker = new Worker(
 // Event listeners
 worker.on("progress", (job, progress) => {
   console.log(
-    `[${new Date().toISOString()}] 📊 Job ${job.id} progress: ${progress}%`
+    `[${new Date().toISOString()}]  Job ${job.id} progress: ${progress}%`
   );
 });
 
 worker.on("completed", (job) => {
   console.log(
-    `[${new Date().toISOString()}] ✅ Job ${job.id} completed → Result:`,
+    `[${new Date().toISOString()}]  Job ${job.id} completed → Result:`,
     job.returnvalue
   );
 });
 
 worker.on("failed", (job, err) => {
   console.error(
-    `[${new Date().toISOString()}] ❌ Job ${job?.id} failed after attempt ${
+    `[${new Date().toISOString()}] Job ${job?.id} failed after attempt ${
       job?.attemptsMade || 0
     }: ${err.message}`
   );
@@ -83,10 +83,10 @@ worker.on("failed", (job, err) => {
 
 // Graceful shutdown
 process.on("SIGINT", async () => {
-  console.log("[Worker] 🛑 Shutting down...");
+  console.log("[Worker]  Shutting down...");
   await worker.close();
   await connection.quit();
   process.exit(0);
 });
 
-console.log("[Worker] 🚀 Worker is running and waiting for jobs...");
+console.log("[Worker]  Worker is running and waiting for jobs...");
