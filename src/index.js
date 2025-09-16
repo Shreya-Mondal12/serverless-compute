@@ -149,5 +149,5 @@ app.get("/jobs/history", async (req, res) => {
 app.listen(3000, async () => {
   console.log("🌐 API running on http://localhost:3000");
   await getMongo();
-  console.log("📡 Ready to receive jobs");
+  console.log("📡 Ready to receive jobs"); //
 });

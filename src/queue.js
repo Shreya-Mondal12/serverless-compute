@@ -15,7 +15,7 @@ const computeQueue = new Queue("compute-tasks", {
     attempts: 3, // retry failed jobs up to 3 times
     backoff: {
       type: "exponential",
-      delay: 2000, // exponential backoff starting at 2s
+      delay: 2000, // exponential backoff starting at 2
     },
     removeOnComplete: true, // auto-cleanup finished jobs
     removeOnFail: false,    // keep failed jobs for inspection

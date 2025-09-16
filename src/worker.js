@@ -23,7 +23,7 @@ const worker = new Worker(
 
     await job.updateProgress(10);
 
-
+ 
     // ---- Normal job execution ----
     try {
       setTimeout(() => job.updateProgress(30), 1000);
