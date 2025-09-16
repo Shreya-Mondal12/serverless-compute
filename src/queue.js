@@ -25,10 +25,10 @@ const computeQueue = new Queue("compute-tasks", {
 // ---- Queue Events ----
 const queueEvents = new QueueEvents("compute-tasks", { connection });
 queueEvents.on("completed", ({ jobId, returnvalue }) => {
-  console.log(`[Queue] ✅ Job ${jobId} completed with result:`, returnvalue);
+  console.log(`[Queue]  Job ${jobId} completed with result:`, returnvalue);
 });
 queueEvents.on("failed", ({ jobId, failedReason }) => {
-  console.error(`[Queue] ❌ Job ${jobId} failed →`, failedReason);
+  console.error(`[Queue]  Job ${jobId} failed →`, failedReason);
 });
 
 // Export
