@@ -9,7 +9,7 @@ const connection = new Redis({
 });
 
 console.log(
-  `[Worker] 🔌 Connected to Redis at ${connection.options.host}:${connection.options.port}`
+  `[Worker]  Connected to Redis at ${connection.options.host}:${connection.options.port}`
 );
 
 // Create Worker
